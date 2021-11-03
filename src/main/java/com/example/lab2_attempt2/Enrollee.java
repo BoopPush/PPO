@@ -80,7 +80,7 @@ public class Enrollee {
     }
 
     public String getMarks(){
-        return Integer.toString(markProg) + " " + Integer.toString(markLang) + " " + Integer.toString(markMath);
+        return Integer.toString(markProg) + ", " + Integer.toString(markLang) + ", " + Integer.toString(markMath);
     }
 
     public static Comparator<Enrollee> EnrolleeMarkDescendingComparator = new Comparator<Enrollee>() {

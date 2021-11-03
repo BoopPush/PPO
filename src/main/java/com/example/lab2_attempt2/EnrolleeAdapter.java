@@ -30,9 +30,9 @@ public class EnrolleeAdapter extends ArrayAdapter<Enrollee> {
         TextView averageView = view.findViewById(R.id.average_mark);
 
         Enrollee enrollee = enrollees.get(position);
-        nameView.setText(enrollee.getFIO());
-        marksView.setText(enrollee.getMarks());
-        averageView.setText(enrollee.averageMarkString());
+        nameView.setText("Full name: "+enrollee.getFIO());
+        marksView.setText("Marks: "+enrollee.getMarks());
+        averageView.setText("Average: "+enrollee.averageMarkString());
         return view;
     }
 }

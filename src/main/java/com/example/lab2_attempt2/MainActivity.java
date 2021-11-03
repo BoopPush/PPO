@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setInitialData();
         enrolleeList = findViewById(R.id.enrolleeList);
+        TextView textView = findViewById(R.id.uni_average);
+        textView.setText("Average university mark: "+getAverageUni(enrollees));
         EnrolleeAdapter enrolleeAdapter = new EnrolleeAdapter(this,R.layout.list_enrollee,enrollees);
         enrolleeList.setAdapter(enrolleeAdapter);
         Collections.sort(enrollees,Enrollee.EnrolleeMarkDescendingComparator);
@@ -46,4 +49,14 @@ public class MainActivity extends AppCompatActivity {
         enrollees.add(new Enrollee("Eva","Vladimirovna","Lozko",10,9,10));
     }
 
+    private String getAverageUni(ArrayList<Enrollee> enrollees){
+        Double sum = 0.0;
+        for (int i = 0;i< enrollees.size();i++){
+            sum+= enrollees.get(i).averageMark();
+        }
+
+        sum/=enrollees.size();
+        String result = String.format("%.1f",sum);
+        return result;
+    }
 }
