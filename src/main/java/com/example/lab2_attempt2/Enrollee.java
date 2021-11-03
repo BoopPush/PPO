@@ -1,6 +1,7 @@
 package com.example.lab2_attempt2;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Enrollee {
@@ -69,11 +70,21 @@ public class Enrollee {
         this.markLang = markLang;
     }
 
-    public String averageMark(){
+    public String averageMarkString(){
         return Integer.toString((markLang+markMath+markProg)/3);
+    }
+    public Integer averageMark(){
+        return (markLang+markMath+markProg)/3;
     }
 
     public String getMarks(){
         return Integer.toString(markProg) + " " + Integer.toString(markLang) + " " + Integer.toString(markMath);
     }
+
+    public static Comparator<Enrollee> EnrolleeMarkDescendingComparator = new Comparator<Enrollee>() {
+        @Override
+        public int compare(Enrollee o1, Enrollee o2) {
+            return o2.averageMark() - o1.averageMark();
+        }
+    };
 }

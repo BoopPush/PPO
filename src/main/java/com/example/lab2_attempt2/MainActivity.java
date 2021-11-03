@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         enrolleeList = findViewById(R.id.enrolleeList);
         EnrolleeAdapter enrolleeAdapter = new EnrolleeAdapter(this,R.layout.list_enrollee,enrollees);
         enrolleeList.setAdapter(enrolleeAdapter);
+        Collections.sort(enrollees,Enrollee.EnrolleeMarkDescendingComparator);
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
