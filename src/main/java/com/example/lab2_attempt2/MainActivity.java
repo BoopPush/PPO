@@ -4,21 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import android.view.ContextMenu;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+    String[] countries = {"delete","edit"};
     ArrayList<Enrollee> enrollees = new ArrayList();
     ArrayList<Enrollee> validEnrollees = new ArrayList();
     ListView enrolleeList;
+    public static final int IDM_OPEN = 101;
+    public static final int IDM_SAVE = 102;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setInitialData();
@@ -34,17 +44,46 @@ public class MainActivity extends AppCompatActivity {
         EnrolleeAdapter enrolleeAdapter = new EnrolleeAdapter(this,R.layout.list_enrollee,validEnrollees);
         enrolleeList.setAdapter(enrolleeAdapter);
         Collections.sort(validEnrollees,Enrollee.EnrolleeMarkDescendingComparator);
-        AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+        registerForContextMenu(enrolleeList);
+        /*AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Enrollee selectedEnrollee =(Enrollee)parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Был выбран " + selectedEnrollee.getFIO(),
-                        Toast.LENGTH_SHORT).show();
+
             }
         };
-        enrolleeList.setOnItemClickListener(itemClickListener);
+        enrolleeList.setOnItemClickListener(itemClickListener);*/
     }
 
+    int currentposition;
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        EnrolleeAdapter info = (EnrolleeAdapter) menuInfo;
+        currentposition = info.position;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
+    }
+    @Override
+    public boolean  onContextItemSelected(MenuItem item){
+        CharSequence message;
+        switch (item.getItemId()){
+            case R.id.delete:
+                message = "Deleting enrollee";
+                /*enrolleeList.remove(currentposition);*/
+                break;
+            case R.id.edit:
+                message = "Editing enrollee";
+                break;
+            default:
+                return super.onContextItemSelected(item);
+        }
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+        return true;
+    }
     private void setInitialData(){
         enrollees.add(new Enrollee("Danila","Vladimirovich","Lozko",4,5,9));
         enrollees.add(new Enrollee("Maksim","Olegovich","Semchenko",6,7,9));
@@ -75,4 +114,5 @@ public class MainActivity extends AppCompatActivity {
         sum/=enrollees.size();
         return sum;
     }
+
 }
