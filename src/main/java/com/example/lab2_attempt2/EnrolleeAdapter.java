@@ -31,8 +31,8 @@ public class EnrolleeAdapter extends ArrayAdapter<Enrollee> {
 
         Enrollee enrollee = enrollees.get(position);
         nameView.setText(enrollee.getFIO());
-        /*marksView.setText(enrollee.getMarks());
-        averageView.setText(enrollee.averageMark());*/
+        marksView.setText(enrollee.getMarks());
+        averageView.setText(enrollee.averageMark());
         return view;
     }
 }

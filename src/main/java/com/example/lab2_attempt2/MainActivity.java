@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Enrollee> enrollees = new ArrayList();
@@ -33,9 +35,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setInitialData(){
-        enrollees.add(new Enrollee("Danila","Vladimirovich","Lozko"/*,4,5,9*/));
-        enrollees.add(new Enrollee("Maksim","Olegovich","Semchenko"/*,6,7,9*/));
-        enrollees.add(new Enrollee("Diana","Vladimirovna","Golushko"/*,7,8,10*/));
+        enrollees.add(new Enrollee("Danila","Vladimirovich","Lozko",4,5,9));
+        enrollees.add(new Enrollee("Maksim","Olegovich","Semchenko",6,7,9));
+        enrollees.add(new Enrollee("Diana","Vladimirovna","Golushko",7,8,10));
+        enrollees.add(new Enrollee("Artem","Denisovich","Klimovich",10,10,10));
+        enrollees.add(new Enrollee("Artem","Vladimirovich","Lozko",4,9,4));
+        enrollees.add(new Enrollee("Valeria","Ruslanovna","Mutalova",7,7,6));
+        enrollees.add(new Enrollee("Ivan","Vasilievich","Pupkin",4,4,4));
+        enrollees.add(new Enrollee("Eva","Vladimirovna","Lozko",10,9,10));
     }
 
 }

@@ -7,17 +7,17 @@ public class Enrollee {
     private String firstName;
     private String middleName;
     private String lastName;
-    /*private Integer markMath;
+    private Integer markMath;
     private Integer markProg;
-    private Integer markLang;*/
+    private Integer markLang;
 
-    public Enrollee(String firstName,String middleName,String lastName/*,Integer markLang,Integer markMath,Integer markProg*/){
+    public Enrollee(String firstName,String middleName,String lastName,Integer markLang,Integer markMath,Integer markProg){
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-        /*this.markLang = markLang;
+        this.markLang = markLang;
         this.markProg = markProg;
-        this.markMath = markMath;*/
+        this.markMath = markMath;
     }
     public String getLastName() {
         return this.lastName;
@@ -47,7 +47,7 @@ public class Enrollee {
         return firstName+" "+middleName+" "+lastName;
     }
 
-    /*public Integer getMarkMath(){
+    public Integer getMarkMath(){
         return markMath;
     }
 
@@ -67,13 +67,13 @@ public class Enrollee {
 
     public void setMarkLang(Integer markLang){
         this.markLang = markLang;
-    }*/
+    }
 
-    /*public Integer averageMark(){
-        return (markLang+markMath+markProg)/3;
+    public String averageMark(){
+        return Integer.toString((markLang+markMath+markProg)/3);
     }
 
     public String getMarks(){
         return Integer.toString(markProg) + " " + Integer.toString(markLang) + " " + Integer.toString(markMath);
-    }*/
+    }
 }
