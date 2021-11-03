@@ -71,7 +71,9 @@ public class Enrollee {
     }
 
     public String averageMarkString(){
-        return Integer.toString((markLang+markMath+markProg)/3);
+        double value = (markLang+markMath+markProg)/3.0;
+        String result = String.format("%.1f",value);
+        return result;
     }
     public Integer averageMark(){
         return (markLang+markMath+markProg)/3;
