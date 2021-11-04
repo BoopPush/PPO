@@ -54,13 +54,12 @@ public class MainActivity extends AppCompatActivity {
         };
         enrolleeList.setOnItemClickListener(itemClickListener);*/
     }
-
     int currentposition;
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        EnrolleeAdapter info = (EnrolleeAdapter) menuInfo;
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         currentposition = info.position;
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context_menu, menu);
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.delete:
                 message = "Deleting enrollee";
-                /*enrolleeList.remove(currentposition);*/
+                /*enrolleeList.removeViewAt(currentposition);*/
                 break;
             case R.id.edit:
                 message = "Editing enrollee";
